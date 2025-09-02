@@ -1,0 +1,12 @@
+@if (loading$ | async) {
+<p>Loading categories...</p>
+} @else if (error$ | async; as err) {
+<p class="text-red-500">{{ err }}</p>
+} @else if (categories$ | async; as categories) { @for (category of categories; track
+category.CategoryId) {
+<div class="product-item">
+  <p>{{ category.CategoryName }}</p>
+  <span>{{ category.CategoryId }}</span>
+  <span>{{ category.CategoryDesc }}</span>
+</div>
+} }
