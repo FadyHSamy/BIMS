@@ -1,17 +1,11 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { GetCategories } from '../../../shared/models/categories/get-categories.model';
-
-export const CategoriesActions = createActionGroup({
-  source: 'Categories',
-  events: {
-    'Load Categories': emptyProps(),
-  },
-});
+import { GetCategories } from '../models/categories/get-categories.model';
 
 export const CategoriesApiActions = createActionGroup({
   source: 'Categories API',
   events: {
-    'Load Categories Success': props<{ categories: GetCategories[] }>(),
-    'Load Categories Failure': props<{ error: string }>(),
+    'load Categories': emptyProps(),
+    'load Categories Success': props<{ categories: GetCategories[] }>(),
+    'load Categories Failure': props<{ error: any }>(),
   },
 });

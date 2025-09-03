@@ -1,23 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { GetCategories } from '../../shared/models/categories/get-categories.model';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GetCategories } from '../../features/categories/models/categories/get-categories.model';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
+  http = inject(HttpClient);
+
   getCategories(): Observable<Array<GetCategories>> {
-    return of([
-      {
-        CategoryId: 1,
-        CategoryName: 'Product 1',
-        CategoryDesc: 'Test Category',
-        CreatedAt: '2025-01-01'
-      },
-      {
-        CategoryId: 2,
-        CategoryName: 'Product 2',
-        CategoryDesc: 'Another Category',
-        CreatedAt: '2025-01-02'
-      }
-    ]);
+    return this.http.get<Array<GetCategories>>('/api/Categories');
   }
 }

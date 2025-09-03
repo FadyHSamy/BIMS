@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { GetCategories } from '../../../shared/models/categories/get-categories.model';
-import { CategoriesActions, CategoriesApiActions } from './categories.actions';
+import { GetCategories } from '../models/categories/get-categories.model';
+import { CategoriesApiActions } from './categories.actions';
 
 export interface CategoriesState {
   categories: ReadonlyArray<GetCategories>;
@@ -16,7 +16,11 @@ export const initialCategoriesState: CategoriesState = {
 
 export const categoriesReducer = createReducer(
   initialCategoriesState,
-  on(CategoriesActions.loadCategories, (state) => ({ ...state, loading: true, error: null })),
+  on(CategoriesApiActions.loadCategories, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
   on(CategoriesApiActions.loadCategoriesSuccess, (state, { categories }) => ({
     ...state,
     categories,

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { CategoriesService } from '../../../core/services/categories.service';
-import { CategoriesActions, CategoriesApiActions } from './categories.actions';
+import { CategoriesApiActions } from './categories.actions';
 
 @Injectable()
 export class CategoriesEffects {
@@ -12,7 +12,7 @@ export class CategoriesEffects {
 
   loadCategories$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CategoriesActions.loadCategories),
+      ofType(CategoriesApiActions.loadCategories),
       mergeMap(() =>
         this.categoriesService.getCategories().pipe(
           map((categories) =>

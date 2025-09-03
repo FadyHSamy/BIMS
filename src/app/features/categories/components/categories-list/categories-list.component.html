@@ -3,10 +3,10 @@
 } @else if (error$ | async; as err) {
 <p class="text-red-500">{{ err }}</p>
 } @else if (categories$ | async; as categories) { @for (category of categories; track
-category.CategoryId) {
+category.categoryId) {
 <div class="product-item">
-  <p>{{ category.CategoryName }}</p>
-  <span>{{ category.CategoryId }}</span>
-  <span>{{ category.CategoryDesc }}</span>
+  <p>{{ category.categoryName }}</p>
+  <span>{{ category.categoryId }}</span>
+  <span>{{ category.categoryDesc }}</span>
 </div>
 } }

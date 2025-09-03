@@ -4,6 +4,7 @@ import { CategoriesState } from './categories.reducer';
 export const selectCategoriesState = createFeatureSelector<CategoriesState>('categories');
 
 export const selectCategories = createSelector(selectCategoriesState, (state) => state.categories);
+
 export const selectCategoriesLoading = createSelector(
   selectCategoriesState,
   (state) => state.loading

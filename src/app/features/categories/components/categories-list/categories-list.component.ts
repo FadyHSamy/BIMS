@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { GetCategories } from '../../../../shared/models/categories/get-categories.model';
-import { CategoriesActions } from '../../state/categories.actions';
+import { GetCategories } from '../../models/categories/get-categories.model';
+import { CategoriesApiActions } from '../../state/categories.actions';
 import {
   selectCategories,
   selectCategoriesError,
@@ -24,7 +24,7 @@ export class CategoriesListComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(CategoriesActions.loadCategories());
+    this.store.dispatch(CategoriesApiActions.loadCategories());
     this.categories$ = this.store.select(selectCategories);
     this.loading$ = this.store.select(selectCategoriesLoading);
     this.error$ = this.store.select(selectCategoriesError);

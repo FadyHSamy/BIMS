@@ -6,18 +6,19 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
-import { CategoriesEffects } from './features/categories/state/categories.effects';
-import { categoriesReducer } from './features/categories/state/categories.reducer';
+import { appInterceptors } from './core/interceptors';
+import { effects } from './state/effects';
+import { reducers } from './state/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideStore({ categories: categoriesReducer }),
-    provideEffects([CategoriesEffects]),
+    provideStore(reducers),
+    provideEffects(effects),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
@@ -27,7 +28,7 @@ export const appConfig: ApplicationConfig = {
       connectInZone: true, // If set to true, the connection is established within the Angular zone
     }),
 
-    provideHttpClient(),
+    provideHttpClient(withInterceptors(appInterceptors)),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
