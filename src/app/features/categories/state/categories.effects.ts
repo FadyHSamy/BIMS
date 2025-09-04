@@ -3,7 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { CategoriesService } from '../../../core/services/categories.service';
-import { CategoriesApiActions } from './categories.actions';
+import { ErrorsActions } from '../../errors/state/errors.actions';
+import { CategoriesActions } from './categories.actions';
 
 @Injectable()
 export class CategoriesEffects {
@@ -12,16 +13,19 @@ export class CategoriesEffects {
 
   loadCategories$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CategoriesApiActions.loadCategories),
+      ofType(CategoriesActions.getCategories),
       mergeMap(() =>
         this.categoriesService.getCategories().pipe(
-          map((categories) =>
-            CategoriesApiActions.loadCategoriesSuccess({ categories: categories })
-          ),
+          map((categories) => CategoriesActions.getCategoriesSuccess({ categories: categories })),
           catchError((error) =>
             of(
-              CategoriesApiActions.loadCategoriesFailure({
-                error: error?.message ?? 'Failed to load categories',
+              ErrorsActions.setError({
+                error: {
+                  message: error?.message ?? 'Failed to load categories',
+                  feature: 'Categories',
+                  severity: 'error',
+                  code: error?.code ?? 'CATEGORIES_LOAD_FAILURE',
+                },
               })
             )
           )

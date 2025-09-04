@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
-import { CategoriesModule } from './features/categories/categories.module';
-
+import { Component } from '@angular/core';
+import { BaseComponent } from './core/layout/base/base.component';
+import { LoaderComponent } from "./shared/components/loader/loader.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, CategoriesModule],
+  imports: [CommonModule, BaseComponent, LoaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('BIMS');
-}
+export class App {}

@@ -6,11 +6,13 @@ export const settingsFeatureKey = 'settings';
 export interface SettingsState {
   loading: boolean;
   loaderCount: number;
+  serviceUrl: string;
 }
 
 export const initialSettingsState: SettingsState = {
   loading: false,
   loaderCount: 0,
+  serviceUrl: 'https://localhost:44364', // Default URL, can be changed via settings
 };
 
 export const settingsReducer = createReducer(

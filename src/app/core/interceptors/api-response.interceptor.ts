@@ -1,19 +1,21 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { catchError, map, throwError } from 'rxjs';
 import { ApiResponse } from '../models/api-response.model';
 
 export const apiResponseInterceptor: HttpInterceptorFn = (req, next) => {
+  const store = inject(Store);
+
   return next(req).pipe(
     map((event: any) => {
-      // Check if response has ApiResponse shape
       if (event?.body && 'Success' in event.body && 'Data' in event.body) {
         const response = event.body as ApiResponse<unknown>;
 
         if (response.Success) {
-          // Replace body with only Data
           return event.clone({ body: response.Data });
         } else {
-          throw new Error(response.Message || 'Unknown error');
+          throw { message: response.Message, code: 'API_ERROR' };
         }
       }
 

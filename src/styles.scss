@@ -1,1 +1,71 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'tailwindcss';
+@use './styles/dark-theme' as dark;
+@use './styles/light-theme' as light;
+
+// Default theme (light)
+:root {
+  --bg-surface: #{light.$bg-surface-light};
+  --text-primary: #{light.$text-primary-light};
+
+  // Sidebar variables
+  --sidebar-bg: #{light.$sidebar-bg-light};
+  --sidebar-text: #{light.$sidebar-text-light};
+  --sidebar-hover-bg: #{light.$sidebar-hover-bg-light};
+  --sidebar-active-bg: #{light.$sidebar-active-bg-light};
+  --background-color: #{light.$background-color};
+}
+
+// Dark theme override
+body.dark {
+  --bg-surface: #{dark.$bg-surface-dark};
+  --text-primary: #{dark.$text-primary-dark};
+
+  // Sidebar variables
+  --sidebar-bg: #{dark.$sidebar-bg-dark};
+  --sidebar-text: #{dark.$sidebar-text-dark};
+  --sidebar-hover-bg: #{dark.$sidebar-hover-bg-dark};
+  --sidebar-active-bg: #{dark.$sidebar-active-bg-dark};
+  --background-color: #{dark.$background-color};
+}
+
+// Semantic utility classes
+.bg-surface {
+  background-color: var(--bg-surface);
+}
+.text-primary {
+  color: var(--text-primary);
+}
+
+/* Sidebar base */
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--sidebar-text);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Hover only link */
+.sidebar a:hover {
+  background-color: var(--sidebar-hover-bg);
+  color: var(--sidebar-active-text, #ffffff); // optional active hover text color
+}
+
+/* Active state */
+.sidebar a.sidebar-active {
+  background-color: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text, #ffffff);
+}
+
+/* Background color for the entire app */
+.app-background {
+  background-color: var(--background-color);
+  min-height: 100vh; // ensures it fills screen
+}

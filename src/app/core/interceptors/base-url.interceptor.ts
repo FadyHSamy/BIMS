@@ -1,14 +1,20 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { exhaustMap, take } from 'rxjs';
+import { selectServiceUrl } from '../../features/settings/state/settings.selectors';
 
 export const baseUrlInterceptor: HttpInterceptorFn = (req, next) => {
-  const baseUrl = 'https://localhost:44364';
+  const store = inject(Store);
 
-  // Only prepend if the request URL is relative (doesn’t start with http)
-  const updatedUrl = req.url.startsWith('http') ? req.url : `${baseUrl}${req.url}`;
+  return store.select(selectServiceUrl).pipe(
+    take(1), // take the latest serviceUrl once
+    exhaustMap((serviceUrl) => {
+      const updatedUrl = req.url.startsWith('http') ? req.url : `${serviceUrl}${req.url}`;
 
-  const newReq = req.clone({
-    url: updatedUrl,
-  });
+      const newReq = req.clone({ url: updatedUrl });
 
-  return next(newReq);
+      return next(newReq);
+    })
+  );
 };

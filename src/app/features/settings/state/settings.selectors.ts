@@ -6,3 +6,7 @@ export const selectSettingsState = createFeatureSelector<SettingsState>(settings
 export const selectLoading = createSelector(selectSettingsState, (state) => state.loading);
 
 export const selectLoaderCount = createSelector(selectSettingsState, (state) => state.loaderCount);
+
+export const selectServiceUrl = createSelector(selectSettingsState, (state) => state.serviceUrl);
+
+

@@ -1,34 +1,24 @@
 import { createReducer, on } from '@ngrx/store';
 import { GetCategories } from '../models/categories/get-categories.model';
-import { CategoriesApiActions } from './categories.actions';
+import { CategoriesActions } from './categories.actions';
+
+export const categoriesFeatureKey = 'categories';
 
 export interface CategoriesState {
   categories: ReadonlyArray<GetCategories>;
-  loading: boolean;
-  error: string | null;
 }
 
 export const initialCategoriesState: CategoriesState = {
   categories: [],
-  loading: false,
-  error: null,
 };
 
 export const categoriesReducer = createReducer(
   initialCategoriesState,
-  on(CategoriesApiActions.loadCategories, (state) => ({
-    ...state,
-    loading: true,
-    error: null,
+  on(CategoriesActions.getCategories, () => ({
+    ...initialCategoriesState,
   })),
-  on(CategoriesApiActions.loadCategoriesSuccess, (state, { categories }) => ({
+  on(CategoriesActions.getCategoriesSuccess, (state, { categories }) => ({
     ...state,
-    categories,
-    loading: false,
-  })),
-  on(CategoriesApiActions.loadCategoriesFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
+    categories: categories,
   }))
 );
