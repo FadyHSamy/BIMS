@@ -1,9 +1,13 @@
-$bg-surface-light: #ffffff; // Soft white background
-$text-primary-light: #1f2937; // Dark gray for text for good contrast
+// SCSS variables for the Light Theme.
+// These are compiled into the CSS variables in styles.scss.
 
-$sidebar-bg-light: #ffffff; // Light gray for sidebar background
-$sidebar-text-light: #757575; // Medium gray for sidebar text
-$sidebar-hover-bg-light: #f6f6f6; // Slightly darker gray for hover state
-$sidebar-active-bg-light: #000000; // Darker gray for active
+$bg-surface-light: #ffffff;
+$text-primary-light: #111827; // Tailwind gray-900
+$background-color-light: #f9fafb; // Tailwind gray-50
 
-$background-color: #5b6777; // Light gray background for the entire app
+// Sidebar specific colors
+$sidebar-bg-light: #f3f4f6; // Tailwind gray-100
+$sidebar-text-light: #374151; // Tailwind gray-700
+$sidebar-hover-bg-light: #e5e7eb; // Tailwind gray-200
+$sidebar-active-bg-light: #4f46e5; // Tailwind indigo-600
+$sidebar-active-text-light: #ffffff;

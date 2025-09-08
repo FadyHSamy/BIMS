@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GetCategories } from '../../features/categories/models/categories/get-categories.model';
+import { GetCategories } from '../models/get-categories.model';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {

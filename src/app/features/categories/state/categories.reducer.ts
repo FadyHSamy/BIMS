@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { GetCategories } from '../models/categories/get-categories.model';
+import { GetCategories } from '../models/get-categories.model';
 import { CategoriesActions } from './categories.actions';
 
 export const categoriesFeatureKey = 'categories';

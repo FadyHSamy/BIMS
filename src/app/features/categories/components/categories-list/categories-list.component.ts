@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { getErrorMessage } from '../../../errors/state/errors.selectors';
 import { selectLoading } from '../../../settings/state/settings.selectors';
-import { GetCategories } from '../../models/categories/get-categories.model';
+import { GetCategories } from '../../models/get-categories.model';
 import { CategoriesActions } from '../../state/categories.actions';
 import { selectCategories } from '../../state/categories.selectors';
 
