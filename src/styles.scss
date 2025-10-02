@@ -1,35 +1,91 @@
-// 1. Import theme variable definitions from separate files
-@use './styles/dark-theme' as dark;
-@use './styles/light-theme' as light;
+// 1. Import mixins and theme definitions
+@use 'styles/mixins';
+@use 'styles/dark-theme' as dark;
+@use 'styles/light-theme' as light;
+@use 'styles/fonts';
+@use 'styles/typography';
 
 // 2. Import Tailwind's base, components, and utilities
-@use "./tailwind";
+@use './tailwind';
 
+body {
+  @include typography.apply-text-style('base');
 
-// 3. Define CSS variables for the default (light) theme in the root scope
-:root {
-  --bg-surface: #{light.$bg-surface-light};
-  --text-primary: #{light.$text-primary-light};
-  --background-color: #{light.$background-color-light};
-
-  // Sidebar theme variables
-  --sidebar-bg: #{light.$sidebar-bg-light};
-  --sidebar-text: #{light.$sidebar-text-light};
-  --sidebar-hover-bg: #{light.$sidebar-hover-bg-light};
-  --sidebar-active-bg: #{light.$sidebar-active-bg-light};
-  --sidebar-active-text: #{light.$sidebar-active-text-light};
+  // Also set default theme colors
+  background-color: var(--background-color);
+  color: var(--text-primary);
 }
 
-// 4. Override CSS variables when the 'dark' class is applied to the body
-body.dark {
-  --bg-surface: #{dark.$bg-surface-dark};
-  --text-primary: #{dark.$text-primary-dark};
-  --background-color: #{dark.$background-color-dark};
+// 3. Apply themes using the mixin
+// The default light theme is applied to the root element.
+:root {
+  @include mixins.apply-theme(light.$theme);
+}
 
-  // Sidebar theme variables
-  --sidebar-bg: #{dark.$sidebar-bg-dark};
-  --sidebar-text: #{dark.$sidebar-text-dark};
-  --sidebar-hover-bg: #{dark.$sidebar-hover-bg-dark};
-  --sidebar-active-bg: #{dark.$sidebar-active-bg-dark};
-  --sidebar-active-text: #{dark.$sidebar-active-text-dark};
+// The dark theme variables are applied when the 'dark' class is present.
+body.dark {
+  @include mixins.apply-theme(dark.$theme);
+}
+
+// 4. NEW: Define reusable component classes
+@layer components {
+  // Base button styles
+  .btn {
+    @apply px-4 py-2 font-semibold rounded-md shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  // --- Color Variants that use your CSS theme variables ---
+
+  .btn-primary {
+    background-color: var(--primary);
+    color: var(--primary-text);
+    @apply focus:ring-[var(--primary)];
+  }
+
+  .btn-secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-text);
+    @apply focus:ring-[var(--secondary)];
+  }
+
+  .btn-danger {
+    background-color: var(--danger);
+    color: var(--danger-text);
+    @apply focus:ring-[var(--danger)];
+  }
+
+  // You can do this for other components, too!
+  .card {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    @apply p-6 rounded-lg shadow-md;
+  }
+  // Class for the main sidebar container
+  .sidebar {
+    background-color: var(--sidebar-bg);
+  }
+
+  // Class for the navigation links inside the sidebar
+  .sidebar-link {
+    // Base layout and typography from Tailwind
+    @apply flex items-center p-2 rounded-lg  transition-colors duration-150;
+
+    // Default theme colors from your CSS variables
+    color: var(--sidebar-text);
+
+    // Hover state
+    &:hover {
+      background-color: var(--sidebar-hover-bg);
+    }
+
+    // Active state (this class is applied by routerLinkActive)
+    &.active {
+      background-color: var(--sidebar-active-bg);
+      color: var(--sidebar-active-text);
+      font-weight: 500; // Medium font weight for active link
+    }
+  }
+  .app-background {
+    background-color: var(--background-color);
+  }
 }

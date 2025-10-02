@@ -1,6 +1,4 @@
 {
-    "cSpell.words": [
-        "ngrx",
-        "SIDEMENU"
-    ]
+  "cSpell.words": ["ngrx", "SIDEMENU"],
+  "scss.lint.unknownAtRules": "ignore"
 }

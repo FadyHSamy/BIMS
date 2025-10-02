@@ -1,12 +1,3 @@
-@if (loading$ | async) {
-<p>Loading categories...</p>
-} @else if (error$ | async; as err) {
-<p class="text-red-500">{{ err }}</p>
-} @else if (categories$ | async; as categories) { @for (category of categories; track
-category.categoryId) {
-<div class="product-item">
-  <p>{{ category.categoryName }}</p>
-  <span>{{ category.categoryId }}</span>
-  <span>{{ category.categoryDesc }}</span>
-</div>
-} }
+@if(categories$|async; as categories){
+<app-grid [columns]="columns" [data]="categories"></app-grid>
+}

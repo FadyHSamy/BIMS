@@ -1,0 +1,19 @@
+<!-- grid.component.html -->
+<div class="flex flex-col w-full p-4 bg-white rounded shadow overflow-x-auto">
+  <app-grid-header
+    [columns]="columns"
+    (sortChange)="onSortChange()"
+    class="border-b border-gray-200"
+  ></app-grid-header>
+
+  <div class="flex flex-col">
+    @for(data of data; track $index){
+    <app-grid-row
+      [columns]="columns"
+      [data]="data"
+      (actionClick)="onRowAction()"
+      class="border-b border-gray-100 hover:bg-gray-50"
+    ></app-grid-row>
+    }
+  </div>
+</div>

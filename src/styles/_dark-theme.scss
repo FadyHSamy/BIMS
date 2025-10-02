@@ -1,13 +1,23 @@
-// SCSS variables for the Dark Theme.
-// These are compiled into the CSS variables in styles.scss.
+// SCSS map for the Dark Theme.
 
-$bg-surface-dark: #1f2937; // Tailwind gray-800
-$text-primary-dark: #f9fafb; // Tailwind gray-50
-$background-color-dark: #111827; // Tailwind gray-900
+$theme: (
+  // General
+  'bg-surface': #1f2937,                        // Tailwind gray-800
+  'text-primary': #f9fafb,                      // Tailwind gray-50
+  'background-color': #111827,                  // Tailwind gray-900
 
-// Sidebar specific colors
-$sidebar-bg-dark: #111827; // Tailwind gray-900
-$sidebar-text-dark: #d1d5db; // Tailwind gray-300
-$sidebar-hover-bg-dark: #374151; // Tailwind gray-700
-$sidebar-active-bg-dark: #4f46e5; // Tailwind indigo-600
-$sidebar-active-text-dark: #ffffff;
+  // Sidebar specific colors
+  'sidebar-bg': #111827,                        // Tailwind gray-900
+  'sidebar-text': #d1d5db,                      // Tailwind gray-300
+  'sidebar-hover-bg': #374151,                  // Tailwind gray-700
+  'sidebar-active-bg': #4f46e5,                 // Tailwind indigo-600
+  'sidebar-active-text': #ffffff,
+
+  // NEW Component Colors
+  'primary': #6366f1,            // indigo-500
+  'primary-text': #ffffff,
+  'secondary': #374151,          // gray-700
+  'secondary-text': #f9fafb,    // gray-50
+  'danger': #ef4444,             // red-500
+  'danger-text': #ffffff
+);

@@ -1,5 +1,9 @@
 <app-sidebar></app-sidebar>
 
-<div class="p-4 sm:ml-30 app-background">
-  <router-outlet></router-outlet>
+<div
+  class="p-4 transition-all duration-300 app-background"
+  [class.ml-31]="isSidebarOpen$ | async"
+  [class.ml-7]="!(isSidebarOpen$ | async)"
+>
+  <router-outlet class="background-color"></router-outlet>
 </div>

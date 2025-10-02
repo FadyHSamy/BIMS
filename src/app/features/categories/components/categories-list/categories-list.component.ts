@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
+import { GridColumn, GridComponent } from '../../../../shared/components/grid/grid/grid.component';
 import { getErrorMessage } from '../../../errors/state/errors.selectors';
 import { selectLoading } from '../../../settings/state/settings.selectors';
-import { GetCategories } from '../../models/get-categories.model';
 import { CategoriesActions } from '../../state/categories.actions';
 import { selectCategories } from '../../state/categories.selectors';
 
@@ -14,19 +13,29 @@ import { selectCategories } from '../../state/categories.selectors';
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, GridComponent],
 })
 export class CategoriesListComponent implements OnInit {
-  categories$!: Observable<ReadonlyArray<GetCategories>>;
-  loading$!: Observable<boolean>;
-  error$!: Observable<string | null>;
-
-  constructor(private store: Store) {}
+  store = inject(Store);
+  categories$ = this.store.select(selectCategories);
+  loading$ = this.store.select(selectLoading);
+  error$ = this.store.select(getErrorMessage);
 
   ngOnInit(): void {
     this.store.dispatch(CategoriesActions.getCategories());
-    this.categories$ = this.store.select(selectCategories);
-    this.loading$ = this.store.select(selectLoading);
-    this.error$ = this.store.select(getErrorMessage);
+  }
+  columns: GridColumn[] = [
+    { key: 'categoryId', label: '#', sortable: false },
+    { key: 'categoryName', label: 'Name', sortable: true },
+    { key: 'categoryDesc', label: 'Category', sortable: false },
+    { key: 'createdAt', label: 'Created At', sortable: true },
+  ];
+
+  onGridSort(columnKey: string) {
+    console.log('Sort by:', columnKey);
+  }
+
+  onGridAction(event: { action: string; row: any }) {
+    console.log('Action:', event.action, 'Row:', event.row);
   }
 }

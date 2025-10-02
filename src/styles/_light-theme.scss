@@ -1,13 +1,23 @@
-// SCSS variables for the Light Theme.
-// These are compiled into the CSS variables in styles.scss.
+// SCSS map for the Light Theme.
 
-$bg-surface-light: #ffffff;
-$text-primary-light: #111827; // Tailwind gray-900
-$background-color-light: #f9fafb; // Tailwind gray-50
+$theme: (
+  // General
+  'bg-surface': #5b6777,
+  'text-primary': #111827,                      // Tailwind gray-900
+  'background-color': #5b6777,                  // Tailwind gray-50
 
-// Sidebar specific colors
-$sidebar-bg-light: #f3f4f6; // Tailwind gray-100
-$sidebar-text-light: #374151; // Tailwind gray-700
-$sidebar-hover-bg-light: #e5e7eb; // Tailwind gray-200
-$sidebar-active-bg-light: #4f46e5; // Tailwind indigo-600
-$sidebar-active-text-light: #ffffff;
+  // Sidebar specific colors
+  'sidebar-bg': #ffffff,                        // Tailwind gray-100
+  'sidebar-text': #5c6677,                      // Tailwind gray-700
+  'sidebar-hover-bg': #e5e7eb,                  // Tailwind gray-200
+  'sidebar-active-bg': #f6f6f6,                 // Tailwind indigo-600
+  'sidebar-active-text': #000000,
+
+  // NEW Component Colors
+  'primary': #4f46e5,            // indigo-600
+  'primary-text': #ffffff,
+  'secondary': #e5e7eb,          // gray-200
+  'secondary-text': #1f2937,    // gray-800
+  'danger': #dc2626,             // red-600
+  'danger-text': #ffffff
+);

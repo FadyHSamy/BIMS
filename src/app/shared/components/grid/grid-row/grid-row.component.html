@@ -1,0 +1,11 @@
+<!-- grid-row.component.html -->
+
+<div class="grid grid-cols-[repeat(auto-fit,minmax(0,1fr))] gap-4 py-2 items-center text-sm">
+  @for (col of columns; track col.key) {
+    <div>{{ data?.[col.key] }}</div>
+  }
+
+  <div>
+    <!-- <app-grid-action [rowId]="row.id" (actionClick)="onActionClick($event)"></app-grid-action> -->
+  </div>
+</div>

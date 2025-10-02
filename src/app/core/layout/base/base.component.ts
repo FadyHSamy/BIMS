@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { selectIsSidebarOpen } from '../state/layout.selectors';
 
 @Component({
   selector: 'app-base',
@@ -11,4 +13,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   standalone: true,
   imports: [CommonModule, RouterModule, SidebarComponent],
 })
-export class BaseComponent {}
+export class BaseComponent {
+  store = inject(Store);
+  isSidebarOpen$ = this.store.select(selectIsSidebarOpen);
+
+
+}

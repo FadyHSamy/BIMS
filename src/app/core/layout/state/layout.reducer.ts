@@ -16,6 +16,10 @@ export const layoutReducer = createReducer(
     ...state,
     isSidebarOpen: true,
   })),
+  on(LayoutActions.toggleSidebar, (state) => ({
+    ...state,
+    isSidebarOpen: !state.isSidebarOpen,
+  })),
   on(LayoutActions.closeSidebar, (state) => ({
     ...state,
     isSidebarOpen: false,
