@@ -7,14 +7,12 @@ import { GridColumn } from '../grid/grid.component';
   templateUrl: './grid-row.component.html',
   styleUrl: './grid-row.component.scss',
 })
-export class GridRowComponent<T extends Record<string, any>> implements OnInit {
+export class GridRowComponent implements OnInit {
   @Input() columns: GridColumn[] = [];
-  @Input() data: T | undefined;
+  @Input() data: any | undefined;
   @Output() actionClick = new EventEmitter<{ rowId: number; actionType: string }>();
 
-  ngOnInit(): void {
-    console.log(this.columns, this.data);
-  }
+  ngOnInit(): void {}
 
   onActionClick(actionType: string) {}
 }

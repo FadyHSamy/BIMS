@@ -3,21 +3,30 @@
 $theme: (
   // General
   'bg-surface': #5b6777,
-  'text-primary': #111827,                      // Tailwind gray-900
-  'background-color': #5b6777,                  // Tailwind gray-50
+  'text-primary': #111827,
+  'background-color': #5b6777,
 
-  // Sidebar specific colors
-  'sidebar-bg': #ffffff,                        // Tailwind gray-100
-  'sidebar-text': #5c6677,                      // Tailwind gray-700
-  'sidebar-hover-bg': #e5e7eb,                  // Tailwind gray-200
-  'sidebar-active-bg': #f6f6f6,                 // Tailwind indigo-600
+  // Sidebar
+  'sidebar-bg': #ffffff,
+  'sidebar-text': #5c6677,
+  'sidebar-hover-bg': #e5e7eb,
+  'sidebar-active-bg': #f6f6f6,
   'sidebar-active-text': #000000,
 
   // NEW Component Colors
-  'primary': #4f46e5,            // indigo-600
+  'primary': #4f46e5,
   'primary-text': #ffffff,
-  'secondary': #e5e7eb,          // gray-200
-  'secondary-text': #1f2937,    // gray-800
-  'danger': #dc2626,             // red-600
-  'danger-text': #ffffff
+  'secondary': #e5e7eb,
+  'secondary-text': #1f2937,
+  'danger': #dc2626,
+  'danger-text': #ffffff,
+
+  // Card
+  'card-background': #ffffff,
+
+  // Grid
+  'grid-background': #f4f7fcbf,
+
+  // Inputs
+  'input-background': #ffffff
 );

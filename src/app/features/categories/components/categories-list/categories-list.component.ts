@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
+import { CardComponent } from "../../../../shared/components/card/card.component";
 import { GridColumn, GridComponent } from '../../../../shared/components/grid/grid/grid.component';
 import { getErrorMessage } from '../../../errors/state/errors.selectors';
 import { selectLoading } from '../../../settings/state/settings.selectors';
@@ -13,7 +14,7 @@ import { selectCategories } from '../../state/categories.selectors';
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss'],
   standalone: true,
-  imports: [CommonModule, GridComponent],
+  imports: [CommonModule, GridComponent, CardComponent],
 })
 export class CategoriesListComponent implements OnInit {
   store = inject(Store);

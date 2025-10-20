@@ -1,3 +1,7 @@
 @if(categories$|async; as categories){
-<app-grid [columns]="columns" [data]="categories"></app-grid>
+
+  <app-card>
+    <app-grid [columns]="columns" [data]="categories"></app-grid>
+  </app-card>
+
 }
