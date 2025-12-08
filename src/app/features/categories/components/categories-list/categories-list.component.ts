@@ -2,10 +2,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
-import { CardComponent } from "../../../../shared/components/card/card.component";
-import { GridColumn, GridComponent } from '../../../../shared/components/grid/grid/grid.component';
-import { getErrorMessage } from '../../../errors/state/errors.selectors';
-import { selectLoading } from '../../../settings/state/settings.selectors';
+import { CardContentComponent } from 'src/app/shared/components/card/card-content/card-content.component';
+import { GridHeaderComponent } from 'src/app/shared/components/grid/grid-header/grid-header.component';
+import { GridRowComponent } from 'src/app/shared/components/grid/grid-row/grid-row.component';
+import { CardComponent } from '../../../../shared/components/card/card.component';
+import {
+  GridColumn,
+  GridComponent,
+} from '../../../../shared/components/grid/grid/grid.component';
 import { CategoriesActions } from '../../state/categories.actions';
 import { selectCategories } from '../../state/categories.selectors';
 
@@ -14,13 +18,18 @@ import { selectCategories } from '../../state/categories.selectors';
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss'],
   standalone: true,
-  imports: [CommonModule, GridComponent, CardComponent],
+  imports: [
+    CommonModule,
+    GridComponent,
+    CardComponent,
+    CardContentComponent,
+    GridHeaderComponent,
+    GridRowComponent,
+  ],
 })
 export class CategoriesListComponent implements OnInit {
   store = inject(Store);
   categories$ = this.store.select(selectCategories);
-  loading$ = this.store.select(selectLoading);
-  error$ = this.store.select(getErrorMessage);
 
   ngOnInit(): void {
     this.store.dispatch(CategoriesActions.getCategories());

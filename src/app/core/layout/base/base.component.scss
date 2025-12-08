@@ -1,0 +1,21 @@
+ion-menu {
+  /* --- 1. SMALL SCREEN (Mobile/Tablet) --- */
+  /* By default, keep it fixed. It won't shrink to 80px here. */
+  max-width: 80px;
+  border-right: 1px solid var(--ion-color-light-shade);
+
+  /* --- 2. LARGE SCREEN (Desktop) --- */
+  @media (min-width: 992px) {
+    /* Set transition only for desktop so resizing window doesn't lag */
+    transition: min-width 0.3s ease, --width 0.3s ease;
+
+    /* A. Default State (Closed/Minimized) */
+
+    min-width: 80px;
+
+    /* B. Expanded State (Open) */
+    &.expanded {
+      max-width: 250px;
+    }
+  }
+}

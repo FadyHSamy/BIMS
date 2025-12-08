@@ -1,8 +1,0 @@
-// A mixin to apply a theme map to a selector.
-// It iterates through the map and creates a CSS variable for each key-value pair.
-
-@mixin apply-theme($theme-map) {
-  @each $key, $value in $theme-map {
-    --#{$key}: #{$value};
-  }
-}

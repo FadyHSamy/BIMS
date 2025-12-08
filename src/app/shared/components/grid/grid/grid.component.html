@@ -12,10 +12,16 @@
       </button>
 
       <div class="relative w-full">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div
+          class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+        >
           <app-icon name="search" style="width: 20px; height: 20px"></app-icon>
         </div>
-        <input type="text" class="text-sm w-full ps-10 p-2.5 input" placeholder="Search..." />
+        <input
+          type="text"
+          class="text-sm w-full ps-10 p-2.5 input"
+          placeholder="Search..."
+        />
       </div>
     </div>
 
@@ -30,20 +36,9 @@
 
   <div class="overflow-x-auto w-full">
     <div class="min-w-[700px]">
-      <app-grid-header
-        [columns]="columns"
-        (sortChange)="onSortChange()"
-        class="border-b border-gray-200"
-      ></app-grid-header>
-
-      @for(data of data; track $index){
-      <app-grid-row
-        [columns]="columns"
-        [data]="data"
-        (actionClick)="onRowAction()"
-        class="border-b border-gray-100 hover:bg-gray-50"
-      ></app-grid-row>
-      }
+      <ion-grid [fixed]="true">
+        <ng-content></ng-content>
+      </ion-grid>
     </div>
   </div>
 </div>

@@ -3,13 +3,13 @@
     "development"
   ],
   "hints": {
-    "axe/structure": [
+    "meta-viewport": "off",
+    "axe/name-role-value": [
       "default",
       {
-        "list": "off"
+        "button-name": "off"
       }
     ],
-    "no-inline-styles": "off",
-    "axe/name-role-value": "off"
+    "no-inline-styles": "off"
   }
 }

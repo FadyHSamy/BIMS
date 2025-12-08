@@ -1,9 +1,13 @@
-<app-sidebar></app-sidebar>
+<ion-split-pane when="lg" contentId="main-content">
+  <ion-menu
+    contentId="main-content"
+    [class.expanded]="isSidebarOpen$ | async"
+    [class.unexpanded]="isSidebarOpen$ | async"
+  >
+    <app-sidebar></app-sidebar>
+  </ion-menu>
 
-<div
-  class="p-4 transition-all duration-300 app-background"
-  [class.ml-31]="isSidebarOpen$ | async"
-  [class.ml-7]="!(isSidebarOpen$ | async)"
->
-  <router-outlet class="background-color"></router-outlet>
-</div>
+  <ion-content>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-content>
+</ion-split-pane>

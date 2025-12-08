@@ -1,4 +1,13 @@
 {
   "cSpell.words": ["ngrx", "SIDEMENU"],
-  "scss.lint.unknownAtRules": "ignore"
+  "scss.lint.unknownAtRules": "ignore",
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css",
+    "scss": "scss" // Add this line
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }

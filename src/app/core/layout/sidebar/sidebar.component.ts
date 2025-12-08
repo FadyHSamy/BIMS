@@ -1,6 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  inject,
+} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  IonAvatar,
+  IonButton,
+  IonIcon,
+  IonItem,
+  IonItemDivider,
+  IonLabel,
+  IonList,
+  IonMenuToggle,
+} from '@ionic/angular/standalone';
 import { Store } from '@ngrx/store';
 import { IconComponent } from '../../../shared/components/icon/icon.component';
 import * as LayoutActions from '../../layout/state/layout.actions';
@@ -12,7 +27,20 @@ import { SIDEMENU_DATA } from './sidemenu.data';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, IconComponent],
+  imports: [
+    IonAvatar,
+    IonButton,
+    IonIcon,
+    IonItemDivider,
+    IonLabel,
+    IonItem,
+    IonList,
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    IconComponent,
+    IonMenuToggle,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
@@ -37,7 +65,7 @@ export class SidebarComponent {
   }
 
   private adjustSidebar(width: number): void {
-    if (width < 768) {
+    if (width < 1200) {
       this.store.dispatch(LayoutActions.closeSidebar());
     } else {
       this.store.dispatch(LayoutActions.openSidebar());

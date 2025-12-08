@@ -1,74 +1,78 @@
-<aside
-  id="default-sidebar"
-  class="fixed top-0 left-0 z-40 w-64 h-full transition-transform duration-300 sidebar"
-  [class.w-64]="isSidebarOpen$ | async"
-  [class.w-16]="!(isSidebarOpen$ | async)"
->
-  <div class="h-full px-3 py-4 overflow-y-auto">
-    <ul>
-      <li class="flex items-center justify-between p-2">
-        <div class="flex items-center gap-3">
-          <img
-            [class]="
-              'rounded-full shadow-lg ' + ((isSidebarOpen$ | async) ? 'w-12 h-12' : 'w-7 h-7')
-            "
-            src="/assets/icons/38ab233ed540c618577c001b3a4a83f67e35158a.png"
-            alt="user image"
-          />
-          @if(isSidebarOpen$ | async){
-          <div class="flex flex-col">
-            <strong class="font-semibold">{{ userName }}</strong>
-            <span class="text-sm text-gray-500">{{ role }}</span>
-          </div>
-          }
-        </div>
+<ion-item lines="none" class="mt-4 mb-4">
+  <ion-avatar
+    slot="start"
+    [class]="(isSidebarOpen$ | async) ? 'w-12 h-12' : 'w-7 h-7'"
+    class="transition-all duration-300"
+  >
+    <img
+      src="/assets/icon/38ab233ed540c618577c001b3a4a83f67e35158a.png"
+      alt="user image"
+    />
+  </ion-avatar>
 
-        <!-- Toggle Button -->
-        <ng-container>
-          <a
-            class="absolute top-12 right-0 -translate-y-1/2 translate-x-1/2 p-2 bg-white rounded-xl shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
-            (click)="toggleSidebar()"
-          >
-            <app-icon
-              [name]="(isSidebarOpen$ | async) ? 'chevronLeft' : 'chevronRight'"
-              style="width: 22px; height: 22px; color: black"
-            ></app-icon>
-          </a>
-        </ng-container>
-      </li>
-      <li class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700"></li>
-      <li class="pb-2">
-        <span class="text-sm text-gray-500 uppercase">main</span>
-      </li>
-      @for (item of sidemenuData; track item.label) {
-      <li>
-        <a
-          [routerLink]="item.route"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="sidebar-link"
-        >
-          <app-icon [name]="item.icon" style="width: 25px; height: 25px; color: red"></app-icon>
-          @if(isSidebarOpen$ | async){
-          <span class="ms-3">{{ item.label }}</span>
-          }
-        </a>
-      </li>
-      }
-      <li class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700"></li>
-      <li>
-        <a
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="sidebar-link"
-          style="color: red"
-        >
-          <app-icon name="logout" style="width: 25px; height: 25px"></app-icon>
-          @if(isSidebarOpen$ | async){
-          <span class="ms-3">Logout Account</span>
-          }
-        </a>
-      </li>
-    </ul>
-  </div>
-</aside>
+  @if(isSidebarOpen$ | async) {
+  <ion-label class="ml-2">
+    <h2 class="font-semibold">{{ userName }}</h2>
+    <p class="text-sm text-gray-500">{{ role }}</p>
+  </ion-label>
+  }
+</ion-item>
+
+<ion-button
+  shape="circle"
+  color="light"
+  class="absolute top-12 right-0 translate-x-1/2 shadow-lg pt-2"
+  style="--padding-start: 8px; --padding-end: 8px; height: 36px; width: 36px"
+  (click)="toggleSidebar()"
+>
+  <app-icon
+    [name]="(isSidebarOpen$ | async) ? 'chevronLeft' : 'chevronRight'"
+    style="width: 22px; height: 22px; color: black"
+  ></app-icon>
+</ion-button>
+
+<ion-list lines="none">
+  <ion-item-divider mode="md" class="bg-transparent">
+    <ion-label
+      color="medium"
+      class="text-xs font-bold uppercase tracking-wider pl-2"
+    >
+      Main
+    </ion-label>
+  </ion-item-divider>
+
+  @for (item of sidemenuData; track item.label) {
+  <ion-item
+    button
+    [routerLink]="item.route"
+    routerLinkActive="selected-item"
+    [routerLinkActiveOptions]="{ exact: true }"
+    detail="false"
+    class="sidebar-item"
+  >
+    <app-icon
+      [name]="item.icon"
+      style="width: 25px; height: 25px; color: red"
+    ></app-icon>
+
+    @if(isSidebarOpen$ | async) {
+    <ion-label class="ml-2">{{ item.label }}</ion-label>
+    }
+  </ion-item>
+  }
+</ion-list>
+
+<ion-list lines="none" class="mt-auto">
+  <ion-item
+    button
+    detail="false"
+    class="sidebar-item"
+    style="--color: var(--ion-color-danger)"
+  >
+    <app-icon name="logout" style="width: 25px; height: 25px"></app-icon>
+
+    @if(isSidebarOpen$ | async) {
+    <ion-label color="danger" class="ml-2">Logout</ion-label>
+    }
+  </ion-item>
+</ion-list>

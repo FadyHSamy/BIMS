@@ -1,12 +1,18 @@
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   ApplicationConfig,
   isDevMode,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  PreloadAllModules,
+  provideRouter,
+  withComponentInputBinding,
+  withPreloading,
+  withViewTransitions,
+} from '@angular/router';
+import { provideIonicAngular } from '@ionic/angular/standalone';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -29,8 +35,14 @@ export const appConfig: ApplicationConfig = {
     }),
 
     provideHttpClient(withInterceptors(appInterceptors)),
+    provideIonicAngular(),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withPreloading(PreloadAllModules), // Standard for Ionic apps
+      withViewTransitions(), // Enable native-like view transitions
+      withComponentInputBinding() // Bind route params directly to inputs
+    ),
   ],
 };

@@ -1,7 +1,20 @@
 @if(categories$|async; as categories){
 
-  <app-card>
-    <app-grid [columns]="columns" [data]="categories"></app-grid>
-  </app-card>
+<app-card>
+  <app-card-content>
+    <app-grid [data]="categories">
+      <app-grid-header
+        [columns]="columns"
+        class="border-b border-gray-200"
+      ></app-grid-header>
+      @for(data of categories; track $index){
+      <app-grid-row
+        [data]="data"
+        class="border-b border-gray-100 hover:bg-gray-50"
+      ></app-grid-row>
+      }
+    </app-grid>
+  </app-card-content>
+</app-card>
 
 }

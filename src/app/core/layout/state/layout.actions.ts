@@ -5,3 +5,4 @@ export const toggleSidebar = createAction('[Layout] Toggle Sidebar');
 export const closeSidebar = createAction('[Layout] Close Sidebar');
 
 export const toggleTheme = createAction('[Layout] Toggle Theme');
+
