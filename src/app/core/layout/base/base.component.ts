@@ -4,11 +4,17 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
   IonContent,
+  IonHeader,
   IonMenu,
   IonRouterOutlet,
-  IonSplitPane
+  IonSplitPane,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
 import { Store } from '@ngrx/store';
+import { CategoriesListComponent } from "src/app/features/categories/components/categories-list/categories-list.component";
+import { IconComponent } from "src/app/shared/components/icon/icon.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { selectIsSidebarOpen } from '../state/layout.selectors';
 
@@ -17,14 +23,13 @@ import { selectIsSidebarOpen } from '../state/layout.selectors';
   templateUrl: './base.component.html',
   styleUrl: './base.component.scss',
   standalone: true,
-  imports: [IonContent,
+  imports: [IonTitle, IonToolbar, IonHeader, IonContent,
     IonSplitPane,
     IonRouterOutlet,
     CommonModule,
     RouterModule,
     SidebarComponent,
-    IonMenu,
-  ],
+    IonMenu, CategoriesListComponent, IconComponent, NavbarComponent],
 })
 export class BaseComponent {
   store = inject(Store);

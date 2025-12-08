@@ -10,3 +10,7 @@ export const selectIsSidebarOpen = createSelector(
 );
 
 export const selectTheme = createSelector(selectLayoutState, (state) => state.theme);
+
+export const selectCurrentPath = createSelector(selectLayoutState, (state) => state.currentPath);
+
+

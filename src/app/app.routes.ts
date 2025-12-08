@@ -10,12 +10,16 @@ export const routes: Routes = [
       {
         path: 'categories',
         loadChildren: () =>
-          import('./features/categories/categories-routing.module').then((m) => m.routes),
+          import('./features/categories/categories-routing.module').then(
+            (m) => m.routes
+          ),
       },
       {
         path: 'authors',
         loadChildren: () =>
-          import('./features/authors/authors-routing.module').then((m) => m.routes),
+          import('./features/authors/authors-routing.module').then(
+            (m) => m.routes
+          ),
       },
     ],
   },

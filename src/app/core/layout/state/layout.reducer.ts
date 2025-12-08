@@ -7,6 +7,7 @@ export const layoutFeatureKey = 'layout';
 export const initialLayoutState: LayoutState = {
   isSidebarOpen: true,
   theme: 'light',
+  currentPath: undefined,
 };
 
 export const layoutReducer = createReducer(
@@ -27,5 +28,9 @@ export const layoutReducer = createReducer(
   on(LayoutActions.toggleTheme, (state) => ({
     ...state,
     theme: state.theme === 'light' ? 'dark' : 'light',
+  })),
+  on(LayoutActions.setCurrentPath, (state, { currentPage }) => ({
+    ...state,
+    currentPath: currentPage,
   }))
 );

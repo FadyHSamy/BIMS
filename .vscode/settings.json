@@ -1,11 +1,16 @@
 {
-  "cSpell.words": ["ngrx", "SIDEMENU"],
   "scss.lint.unknownAtRules": "ignore",
   "tailwindCSS.includeLanguages": {
     "html": "html",
     "javascript": "javascript",
     "css": "css",
     "scss": "scss" // Add this line
+  },
+
+  "tailwindCSS.experimental.configFile": "src/tailwind.css", // Or your main CSS entrypoint
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.scss": "scss" // Ensure SCSS files are still recognized as SCSS
   },
   "editor.quickSuggestions": {
     "strings": true

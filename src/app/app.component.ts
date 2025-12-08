@@ -1,8 +1,10 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Event, NavigationEnd, Router } from '@angular/router';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
+import { filter, Subject, takeUntil } from 'rxjs';
 import { ICONS } from './core/icons';
+import * as layoutActions from './core/layout/state/layout.actions';
 import { selectTheme } from './core/layout/state/layout.selectors';
 import { IconRegistryService } from './core/services/icon-registry';
 
@@ -16,10 +18,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   iconRegistry = inject(IconRegistryService);
   store = inject(Store);
+  router = inject(Router);
 
   ngOnInit(): void {
     this.handleTheme();
     this.registerIcons();
+    this.setRouterEvent();
   }
 
   registerIcons() {
@@ -38,7 +42,22 @@ export class AppComponent implements OnInit, OnDestroy {
         );
       });
   }
+  setRouterEvent() {
+    this.router.events
+      .pipe(
+        filter(
+          (event: Event): event is NavigationEnd =>
+            event instanceof NavigationEnd
+        )
+      )
+      .subscribe((event: NavigationEnd) => {
+        console.log('Navigated to:', event.urlAfterRedirects);
 
+        this.store.dispatch(
+          layoutActions.setCurrentPath({ currentPage: event.urlAfterRedirects })
+        );
+      });
+  }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

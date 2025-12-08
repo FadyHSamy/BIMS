@@ -8,13 +8,12 @@ import {
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   IonAvatar,
-  IonButton,
   IonIcon,
   IonItem,
   IonItemDivider,
   IonLabel,
   IonList,
-  IonMenuToggle,
+  IonToolbar,
 } from '@ionic/angular/standalone';
 import { Store } from '@ngrx/store';
 import { IconComponent } from '../../../shared/components/icon/icon.component';
@@ -28,9 +27,9 @@ import { SIDEMENU_DATA } from './sidemenu.data';
   styleUrl: './sidebar.component.scss',
   standalone: true,
   imports: [
-    IonAvatar,
-    IonButton,
     IonIcon,
+    IonToolbar,
+    IonAvatar,
     IonItemDivider,
     IonLabel,
     IonItem,
@@ -39,7 +38,6 @@ import { SIDEMENU_DATA } from './sidemenu.data';
     RouterLink,
     RouterLinkActive,
     IconComponent,
-    IonMenuToggle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -65,7 +63,7 @@ export class SidebarComponent {
   }
 
   private adjustSidebar(width: number): void {
-    if (width < 1200) {
+    if (width <= 991) {
       this.store.dispatch(LayoutActions.closeSidebar());
     } else {
       this.store.dispatch(LayoutActions.openSidebar());
