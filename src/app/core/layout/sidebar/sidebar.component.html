@@ -1,3 +1,5 @@
+<!-- SideMenu Component -->
+
 <ion-list>
   <ion-item lines="none" class="p-3">
     <ion-avatar slot="start" class="transition-all duration-300">
@@ -27,12 +29,12 @@
   @for (item of sidemenuData; track item.label) {
   <ion-item
     lines="none"
-    button
     [routerLink]="item.route"
     routerLinkActive="selected-item"
     [routerLinkActiveOptions]="{ exact: true }"
     detail="false"
     class="sidebar-item"
+    (click)="onPageClick()"
   >
     <app-icon
       [name]="item.icon"

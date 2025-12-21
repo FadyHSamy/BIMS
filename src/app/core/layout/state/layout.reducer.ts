@@ -8,6 +8,7 @@ export const initialLayoutState: LayoutState = {
   isSidebarOpen: true,
   theme: 'light',
   currentPath: undefined,
+  isScreenSizeSmall: undefined,
 };
 
 export const layoutReducer = createReducer(
@@ -32,5 +33,9 @@ export const layoutReducer = createReducer(
   on(LayoutActions.setCurrentPath, (state, { currentPage }) => ({
     ...state,
     currentPath: currentPage,
+  })),
+  on(LayoutActions.setIsScreenSize, (state, { isScreenSizeSmall }) => ({
+    ...state,
+    isScreenSizeSmall: isScreenSizeSmall,
   }))
 );

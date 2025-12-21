@@ -1,15 +1,19 @@
+<!-- Navbar Component -->
+
 <ion-toolbar>
   <div class="mr-2 p-4 flex justify-between items-center">
-    <div class="text-start flex gap-3">
-      @if(!(isSideBarOpen$ |async);){
-        <ion-button fill="clear">
+
+    @if((!(isSideBarOpen$ | async)) || ((isScreenSizeSmall$ |async )); ){
+    <ion-menu-button>
+      <ion-button fill="clear" (click)="BTN_OpenSideBar()">
         <app-icon name="menu" style="width: 25px; height: 25px"></app-icon>
       </ion-button>
-      }
-      @if(currentPage$|async; as currentPage){
-         <ion-label class="text-start">{{ currentPage.label }}</ion-label>
-      }
-    </div>
+    </ion-menu-button>
+    }
+    @if(currentPage$|async; as currentPage){
+    <ion-label class="text-start">{{ currentPage.label }}</ion-label>
+    }
+
     <div class="text-end">
       <ion-button fill="clear">
         <app-icon name="bell" style="width: 25px; height: 25px"></app-icon>

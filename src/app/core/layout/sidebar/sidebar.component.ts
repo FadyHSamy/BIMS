@@ -8,12 +8,11 @@ import {
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
   IonAvatar,
-  IonIcon,
+  IonFooter,
   IonItem,
   IonItemDivider,
   IonLabel,
-  IonList,
-  IonToolbar,
+  IonList, IonToolbar
 } from '@ionic/angular/standalone';
 import { Store } from '@ngrx/store';
 import { IconComponent } from '../../../shared/components/icon/icon.component';
@@ -26,9 +25,7 @@ import { SIDEMENU_DATA } from './sidemenu.data';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
   standalone: true,
-  imports: [
-    IonIcon,
-    IonToolbar,
+  imports: [IonToolbar, IonFooter,
     IonAvatar,
     IonItemDivider,
     IonLabel,
@@ -52,21 +49,27 @@ export class SidebarComponent {
     this.adjustSidebar(window.innerWidth);
   }
 
-  toggleSidebar(): void {
-    this.store.dispatch(LayoutActions.toggleSidebar());
-  }
-
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     const width = (event.target as Window).innerWidth;
     this.adjustSidebar(width);
   }
 
+  onPageClick() {
+    this.store.dispatch(LayoutActions.closeSidebar());
+  }
+
   private adjustSidebar(width: number): void {
     if (width <= 991) {
       this.store.dispatch(LayoutActions.closeSidebar());
+      this.store.dispatch(
+        LayoutActions.setIsScreenSize({ isScreenSizeSmall: true })
+      );
     } else {
       this.store.dispatch(LayoutActions.openSidebar());
+      this.store.dispatch(
+        LayoutActions.setIsScreenSize({ isScreenSizeSmall: false })
+      );
     }
   }
 }

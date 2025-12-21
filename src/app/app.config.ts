@@ -18,8 +18,7 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
 import { appInterceptors } from './core/interceptors';
-import { effects } from './state/effects';
-import { reducers } from './state/reducers';
+import { effects, reducers } from './state/states';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -2,6 +2,7 @@ export interface LayoutState {
   isSidebarOpen: boolean;
   theme: 'light' | 'dark';
   currentPath: string | undefined;
+  isScreenSizeSmall: boolean | undefined;
 }
 
 export interface SideMenuItem {

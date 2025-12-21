@@ -10,3 +10,8 @@ export const setCurrentPath = createAction(
   '[Layout] Set Current Page',
   props<{ currentPage: string }>()
 );
+
+export const setIsScreenSize = createAction(
+  '[Layout] Set Is Screen Size',
+  props<{ isScreenSizeSmall: boolean }>()
+);

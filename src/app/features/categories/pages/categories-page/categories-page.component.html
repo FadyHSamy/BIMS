@@ -1,2 +1,38 @@
-<app-categories-list></app-categories-list>
+<!-- Categories Component -->
 
+<ion-text>
+  <h1 class="ml-8">Book Inventory</h1>
+  <h6 class="ml-8 text-gray-600">Manage your book collection</h6>
+</ion-text>
+
+<app-card>
+  <app-card-content>
+    <ion-grid>
+      <ion-row class="">
+        <ion-col size="1">
+          <ion-button fill="clear">
+            <app-icon
+              name="filter"
+              style="width: 20px; height: 20px"
+            ></app-icon>
+            test
+          </ion-button>
+        </ion-col>
+        <ion-col size="1">
+          <ion-button fill="clear">
+            <app-icon
+              name="filter"
+              style="width: 20px; height: 20px"
+            ></app-icon>
+            test
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-searchbar></ion-searchbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </app-card-content>
+</app-card>
+
+<app-categories-list></app-categories-list>

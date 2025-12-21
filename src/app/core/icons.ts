@@ -34,5 +34,8 @@ export const ICONS = {
   `,
   menu:`
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-  `
+  `,
+  // filter:`
+  // <svg viewBox="0 0 24 24" id="filter" xmlns="http://www.w3.org/2000/svg" class="icon multi-color" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><polygon id="tertiary-fill" points="16.63 8 14 11 14 19 10 21 10 11 7.37 8 16.63 8" style="fill: #b7b7b7; stroke-width: 2;"></polygon><path id="primary-stroke" d="M4.45,4.66,10,11V21l4-2V11l5.55-6.34A1,1,0,0,0,18.8,3H5.2A1,1,0,0,0,4.45,4.66Z" style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></g></svg>
+  // `
 };

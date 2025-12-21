@@ -1,7 +1,5 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
-import { Store } from '@ngrx/store';
-import { selectTheme } from '../../../core/layout/state/layout.selectors';
 import { IconRegistryService } from '../../../core/services/icon-registry';
 
 @Component({
@@ -22,9 +20,6 @@ import { IconRegistryService } from '../../../core/services/icon-registry';
   ],
 })
 export class IconComponent implements OnChanges {
-  store = inject(Store);
-  theme$ = this.store.select(selectTheme);
-
   @Input() name: string = '';
   svg?: SafeHtml;
 
