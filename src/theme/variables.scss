@@ -1,2 +1,40 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+/**
+ * Theme Variables
+ * ----------------------------------------------------------------------------
+ * Main theme configuration file that generates all CSS custom properties
+ * for Ionic components and custom application variables.
+ *
+ * This file imports color definitions and mixins, then generates all
+ * the necessary CSS variables in the :root selector.
+ */
+
+@import './colors';
+@import './mixins';
+
+:root {
+  // ==========================================================================
+  // Ionic Color Variables (Auto-generated from base colors)
+  // ==========================================================================
+
+  // Primary Colors
+  @include ionic-color('primary', $color-primary);
+  @include ionic-color('secondary', $color-secondary);
+  @include ionic-color('tertiary', $color-tertiary);
+
+  // Semantic Colors
+  @include ionic-color('success', $color-success);
+  @include ionic-color('warning', $color-warning);
+  @include ionic-color('danger', $color-danger);
+
+  // Neutral Colors
+  @include ionic-color('light', $color-light);
+  @include ionic-color('medium', $color-medium);
+  @include ionic-color('dark', $color-dark);
+
+  // ==========================================================================
+  // Custom Application Variables
+  // ==========================================================================
+
+  @include custom-variable('ion-background-color', $color-background);
+  @include custom-variable('ion-background-components-color', $color-background-components);
+}

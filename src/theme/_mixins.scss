@@ -1,0 +1,42 @@
+/**
+ * SCSS Mixins
+ * ----------------------------------------------------------------------------
+ * Reusable mixins for theming and styling
+ * 
+ * Note: This file assumes colors.scss is imported before this file
+ */
+
+/**
+ * Generate Ionic color CSS variables
+ * Creates all required Ionic color variables from a base color
+ * 
+ * @param {string} $name - Color name (e.g., 'primary', 'secondary')
+ * @param {string} $base-color - Base hex color value
+ * @param {number} $shade-percent - Percentage for shade calculation (default: 10%)
+ * @param {number} $tint-percent - Percentage for tint calculation (default: 10%)
+ */
+@mixin ionic-color($name, $base-color, $shade-percent: 10%, $tint-percent: 10%) {
+  $rgb: hex-to-rgb($base-color);
+  $shade: shade($base-color, $shade-percent);
+  $tint: tint($base-color, $tint-percent);
+  $contrast: contrast-color($base-color);
+  $contrast-rgb: hex-to-rgb($contrast);
+
+  --ion-color-#{$name}: #{$base-color};
+  --ion-color-#{$name}-rgb: #{$rgb};
+  --ion-color-#{$name}-contrast: #{$contrast};
+  --ion-color-#{$name}-contrast-rgb: #{$contrast-rgb};
+  --ion-color-#{$name}-shade: #{$shade};
+  --ion-color-#{$name}-tint: #{$tint};
+}
+
+/**
+ * Generate custom CSS variable
+ * 
+ * @param {string} $name - Variable name
+ * @param {string} $value - Variable value
+ */
+@mixin custom-variable($name, $value) {
+  --#{$name}: #{$value};
+}
+

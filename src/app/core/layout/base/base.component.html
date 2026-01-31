@@ -1,18 +1,26 @@
 <!-- Base Component -->
 
+<!-- Skip to main content link for accessibility -->
+<a href="#main-content" class="skip-to-main" aria-label="Skip to main content">
+  Skip to main content
+</a>
+
 <ion-split-pane when="lg" contentId="main">
-  <ion-menu contentId="main">
+  <ion-menu contentId="main" menuId="main-menu" side="start" type="overlay" (ionMenuDidClose)="onMenuClosed()" aria-label="Main navigation menu">
     <app-sidebar></app-sidebar>
   </ion-menu>
 
-  <div class="ion-page" id="main">
-    <ion-header>
+  <div class="ion-page" id="main" role="main">
+    <ion-header class="navbar-border">
       <app-navbar></app-navbar>
     </ion-header>
 
-    <ion-content >
-      <router-outlet ></router-outlet>
-    </ion-content>
+    <ion-content [scrollEvents]="true" [fullscreen]="true">
+      <app-loader></app-loader>
 
+      <main id="main-content" class="main-content ion-padding">
+        <router-outlet></router-outlet>
+      </main>
+    </ion-content>
   </div>
 </ion-split-pane>

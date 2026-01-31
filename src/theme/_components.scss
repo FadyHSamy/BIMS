@@ -1,0 +1,66 @@
+/**
+ * Global Component Styles
+ * ----------------------------------------------------------------------------
+ * Styles for Ionic components that should be applied globally.
+ * These styles are separated from :root for better organization.
+ */
+
+// ============================================================================
+// Card Component
+// ============================================================================
+ion-card {
+  background-color: var(--ion-background-components-color);
+  border: 1px solid var(--ion-color-light-shade);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+// ============================================================================
+// Menu Component
+// ============================================================================
+ion-menu {
+  --background: var(--ion-background-components-color) !important;
+  ion-list {
+    --ion-item-background: transparent;
+    --background: transparent; /* Also try for the list container */
+  }
+
+  ion-item {
+    --ion-item-background: transparent;
+    --background: transparent; /* For individual items */
+    box-shadow: none !important; /* Removes potential item shadows */
+  }
+}
+
+// ============================================================================
+// Button Component (Optional - customize as needed)
+// ============================================================================
+// ion-button {
+//   --background: rgb(207, 11, 11);
+// }
+
+// ============================================================================
+// Input Component (Optional - customize as needed)
+// ============================================================================
+// ion-input {
+//   --padding-start: 12px;
+//   --padding-end: 12px;
+// }
+
+// ============================================================================
+// Toolbar Component
+// ============================================================================
+ion-toolbar {
+  --background: var(--ion-background-components-color) !important;
+  border-bottom: none !important;
+}
+
+// ============================================================================
+// Footer Component
+// ============================================================================
+ion-footer {
+  --background: var(--ion-background-components-color) !important;
+}
+

@@ -1,0 +1,80 @@
+/**
+ * Color Variables
+ * ----------------------------------------------------------------------------
+ * Base color definitions for the application theme.
+ *
+ * To change colors:
+ * 1. Update the base color values below
+ * 2. The Ionic color variables will be auto-generated
+ * 3. All components will automatically use the new colors
+ */
+
+// ============================================================================
+// Base Color Palette
+// ============================================================================
+
+// Primary Colors
+$color-primary: #0054e9;
+$color-secondary: #0163aa;
+$color-tertiary: #6030ff;
+
+// Semantic Colors
+$color-success: #2dd55b;
+$color-warning: #ffc409;
+$color-danger: #c5000f;
+
+// Neutral Colors
+$color-light: #f6f8fc;  // Light gray (matches original RGB: 246, 248, 252)
+$color-medium: #f3f5f4;
+$color-dark: #2f2f2f;
+// Background Colors
+$color-background: #f9fafc;
+$color-background-components: #ffffff;
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Convert hex color to RGB values
+ * @param {string} $hex - Hex color code (e.g., #0054e9)
+ * @returns {string} - RGB values (e.g., "0, 84, 233")
+ */
+@function hex-to-rgb($hex) {
+  @return red($hex) + ", " + green($hex) + ", " + blue($hex);
+}
+
+/**
+ * Calculate shade color (darker version)
+ * @param {string} $color - Base color
+ * @param {number} $percent - Percentage to darken (default: 10%)
+ * @returns {string} - Shaded color
+ */
+@function shade($color, $percent: 10%) {
+  @return mix(black, $color, $percent);
+}
+
+/**
+ * Calculate tint color (lighter version)
+ * @param {string} $color - Base color
+ * @param {number} $percent - Percentage to lighten (default: 10%)
+ * @returns {string} - Tinted color
+ */
+@function tint($color, $percent: 10%) {
+  @return mix(white, $color, $percent);
+}
+
+/**
+ * Determine contrast color (black or white) for text readability
+ * @param {string} $color - Background color
+ * @returns {string} - Contrast color (#000000 or #ffffff)
+ */
+@function contrast-color($color) {
+  $lightness: lightness($color);
+  @if $lightness > 50% {
+    @return #000000;
+  } @else {
+    @return #ffffff;
+  }
+}
+

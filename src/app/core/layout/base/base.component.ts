@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 import { distinctUntilChanged } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 import * as LayoutActions from '../state/layout.actions'; // Import Actions
 import {
   selectIsScreenSizeSmall,
@@ -35,6 +36,7 @@ import {
     SidebarComponent,
     IonMenu,
     NavbarComponent,
+    LoaderComponent,
   ],
 })
 export class BaseComponent implements OnInit {
@@ -45,11 +47,11 @@ export class BaseComponent implements OnInit {
   isScreenSizeSmall$ = this.store.select(selectIsScreenSizeSmall);
 
   ngOnInit() {
-    // Subscribe to state changes to drive the UI
+
     this.isSideBarOpen$
-      .pipe(distinctUntilChanged()) // Prevent duplicate triggers
+      .pipe(distinctUntilChanged())
       .subscribe(async (isOpen) => {
-        // If we are on mobile (not split pane), we must toggle manually
+        
         if (isOpen) {
           await this.menuCtrl.enable(true, 'main-menu');
           await this.menuCtrl.open('main-menu');
@@ -59,8 +61,6 @@ export class BaseComponent implements OnInit {
       });
   }
 
-  // Handle the User Interface closing the menu (e.g. clicking the backdrop)
-  // This keeps the NgRx store in sync with the UI
   onMenuClosed() {
     this.store.dispatch(LayoutActions.closeSidebar());
   }
